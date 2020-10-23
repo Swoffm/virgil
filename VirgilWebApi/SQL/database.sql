@@ -23,6 +23,11 @@ Create Table [User]
 	[Username] nvarchar(25) NOT NULL
 )
 
+CREATE TABLE [Collection]
+(
+	[Id] integer PRIMARY KEY IDENTITY,
+	[Name] varchar(50) NOT NULL
+)
 
 CREATE TABLE [Category]
 (
@@ -47,11 +52,7 @@ CREATE TABLE [Book]
 )
 
 
-CREATE TABLE [Collection]
-(
-	[Id] integer PRIMARY KEY IDENTITY,
-	[Name] varchar(50) NOT NULL
-)
+
 
 CREATE TABLE [UserCollection]
 (
