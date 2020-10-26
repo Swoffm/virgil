@@ -2,15 +2,15 @@ USE [Virgil];
 GO
 
 
-set identity_insert [User] on 
-INSERT INTO [User] 
+set identity_insert [UserData] on 
+INSERT INTO [UserData] 
 	([Id], [Username])
 VALUES
 		(1, 'Steve'),
 		(2, 'Greg'),
 		(3, 'Gavin'),
 		(4, 'Blue')
-set identity_insert [User] off
+set identity_insert [UserData] off
 
 
 

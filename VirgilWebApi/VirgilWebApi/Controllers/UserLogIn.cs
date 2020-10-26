@@ -22,9 +22,9 @@ namespace VirgilWebApi.Controllers
 
 
         [HttpGet]
-        public IActionResult Get(int id)
+        public IActionResult Get(string name)
         {
-            return Ok();
+            return Ok(_userProfileRepository.GetByUserName(name));
         }
 
 

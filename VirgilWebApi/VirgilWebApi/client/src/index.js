@@ -1,15 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import Home from "./components/home/Home";
-import AppNav from "./components/nav/Nav";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 ReactDOM.render(
-  <>
-    <AppNav />
-    <Home />
-    </>,
+
+  <App />,
   document.getElementById('root')
 );
 

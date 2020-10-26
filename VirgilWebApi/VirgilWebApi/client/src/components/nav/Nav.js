@@ -12,7 +12,7 @@ const AppNav = () => {
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
       <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="#link">Log In</Nav.Link>
+      <Nav.Link href="/login">Log In</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

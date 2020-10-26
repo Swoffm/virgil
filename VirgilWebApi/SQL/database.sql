@@ -9,7 +9,7 @@ GO
 
 DROP TABLE IF EXISTS [UserCollection];
 DROP TABLE IF EXISTS [BookCollection];
-DROP TABLE IF EXISTS [User];
+DROP TABLE IF EXISTS [UserData];
 DROP TABLE IF EXISTS [Book];
 DROP TABLE IF EXISTS [Category];
 DROP TABLE IF EXISTS [Collection];
@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS [Collection];
 
 
 
-Create Table [User]
+Create Table [UserData]
 (
 	[Id] integer PRIMARY KEY IDENTITY,
 	[Username] nvarchar(25) NOT NULL
@@ -35,7 +35,7 @@ CREATE TABLE [Category]
 	[UserId] integer NOT NULL,
 	[Category] varchar(25) NOT NULL
 
-	CONSTRAINT [FK_Category_UserId] FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
+	CONSTRAINT [FK_Category_UserId] FOREIGN KEY ([UserId]) REFERENCES [UserData] ([Id])
 )
 
 CREATE TABLE [Book]
@@ -47,7 +47,7 @@ CREATE TABLE [Book]
 	[Details] text NOT NULL,
 	[CategoryId] integer NOT NULL
 
-	CONSTRAINT [FK_Book_UserId] FOREIGN KEY ([UserId]) REFERENCES [User] ([Id]),
+	CONSTRAINT [FK_Book_UserId] FOREIGN KEY ([UserId]) REFERENCES [UserData] ([Id]),
 	CONSTRAINT [FK_Book_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
 )
 
@@ -61,7 +61,7 @@ CREATE TABLE [UserCollection]
 	[CollectionId] integer NOT NULL
 
 	CONSTRAINT [FK_UserCollection_CollectionId] FOREIGN KEY ([CollectionId]) REFERENCES [Collection] ([Id]),
-	CONSTRAINT [FK_UserCollection_UserId] FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
+	CONSTRAINT [FK_UserCollection_UserId] FOREIGN KEY ([UserId]) REFERENCES [UserData] ([Id])
 
 )
 
