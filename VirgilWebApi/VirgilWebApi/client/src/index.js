@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './css/bootstrap-4.5.3-dist/css/bootstrap.css';
-// import './css/bootstrap-4.5.3-dist/js/bootstrap.bundle';
 import * as serviceWorker from './serviceWorker';
 import Home from "./components/home/Home";
+import AppNav from "./components/nav/Nav";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
+    <AppNav />
     <Home />
-  </React.StrictMode>,
+    </>,
   document.getElementById('root')
 );
 
