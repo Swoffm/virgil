@@ -17,7 +17,6 @@ namespace VirgilWebApi.Controllers
         public UserLogIn(IUserProfileRepository userProfileRepository)
         {
             _userProfileRepository = userProfileRepository;
-
         }
 
         [HttpGet("{name}")]
@@ -28,11 +27,10 @@ namespace VirgilWebApi.Controllers
             return Ok(user);
         }
 
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    return Ok(_userProfileRepository.GetAll());
-        //}
+
+
+
+        
 
 
 

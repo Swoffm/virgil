@@ -15,9 +15,7 @@ const UserLogIn = () => {
     }
     const loginSubmit = (e) => {
         e.preventDefault();
-        getUserProfile(profile.username)
-      //   .then(() => history.push("/"))
-      // .catch(() => alert("Invalid email or password"));
+        getUserProfile(profile.username);
     }
    
 
