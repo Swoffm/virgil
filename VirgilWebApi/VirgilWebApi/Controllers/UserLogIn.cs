@@ -25,12 +25,7 @@ namespace VirgilWebApi.Controllers
            var user = _userProfileRepository.GetByUserName(name);
             
             return Ok(user);
-        }
-
-
-
-
-        
+        } 
 
 
 

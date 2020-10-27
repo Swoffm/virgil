@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VirgilWebApi.Model
 {
-    public class book
+    public class Book
     {
         public int Id { get; set; }
         public string BookName { get; set; }
