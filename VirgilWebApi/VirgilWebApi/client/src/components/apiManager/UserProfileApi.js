@@ -1,29 +1,43 @@
 import React, { useState, useContext, createContext } from "react";
+import {useHistory} from "react-router-dom";
 
 export const UserProfileContext = createContext();
 
 
 const UserProfileManager = (props) => {
+    const history = useHistory();
+
     const userProfile = sessionStorage.getItem("userProfile");
     const [profile, setProfile] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null); 
     
 const apiUrl = "/api/UserLogIn";
 
-    const getUserProfile = (name) => {
+   async function getUserProfile(name) {
         
         return fetch(`${apiUrl}/${name}`, {
             method: "GET",
             headers : {
                 'Content-Type': 'application/json'
-            }
+            },
+            
         }
            )
          .then(result => result.json())
         .then((data) => {
-
-            console.log(data);
+           
+           setProfile(data);
+           if(data.userName != null) {
+           sessionStorage.setItem("userName", JSON.stringify(data));
+           setIsLoggedIn(true);
+           history.push("/")
+           }
+           else {
+               alert ("Invalid username")
+           }
+           
         })
+    
     }
 
     return (

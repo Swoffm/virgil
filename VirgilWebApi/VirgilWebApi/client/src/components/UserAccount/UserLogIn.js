@@ -5,20 +5,21 @@ import {useHistory, Link} from "react-router-dom";
 
 const UserLogIn = () => {
     const history = useHistory();
-    const {userProfile, getUserProfile} = useContext(UserProfileContext);
+    const {isLoggedIn, getUserProfile} = useContext(UserProfileContext);
     const [profile, setProfile] = useState();
     
     const handleFieldChange = evt => {
         const stateToChange = { ...profile};
         stateToChange[evt.target.id] = evt.target.value;
         setProfile(stateToChange);
-        console.log(profile);
     }
     const loginSubmit = (e) => {
         e.preventDefault();
-       console.log(profile.username);
-        getUserProfile(profile.username);
+        getUserProfile(profile.username)
+      //   .then(() => history.push("/"))
+      // .catch(() => alert("Invalid email or password"));
     }
+   
 
     return (
         <Form onSubmit={loginSubmit} className="container">

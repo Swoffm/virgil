@@ -24,10 +24,7 @@ namespace VirgilWebApi.Controllers
         public IActionResult Get(string name)
         {
            var user = _userProfileRepository.GetByUserName(name);
-            if(user == null)
-            {
-                return NotFound();
-            }
+            
             return Ok(user);
         }
 
