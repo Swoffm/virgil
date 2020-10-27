@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj": {}
+    "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj": {
+    "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
         "projectName": "VirgilWebApi",
-        "projectPath": "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
+        "projectPath": "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
         "packagesPath": "C:\\Users\\gavin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\obj\\",
+        "outputPath": "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

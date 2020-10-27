@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ut9XG1YKxAVEzQS5zBvnlbsRk3DNqXne4iGYI22eyeJFQRepBoDPm41+B0OLqgygTPuAV52mmgDZpRhNtBwmqQ==",
+  "dgSpecHash": "jMVrFqKBfzbojOuBvsR85L+amRdN/KlhxlHyaHfzsJ1yUnHZkgOpgi8UWtpQp9hNsr53RWv0hHCRPtNhgQOPKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gavin\\workspace\\Virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
+  "projectFilePath": "C:\\Users\\gavin\\workspace\\virgil\\VirgilWebApi\\VirgilWebApi\\VirgilWebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gavin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\gavin\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
