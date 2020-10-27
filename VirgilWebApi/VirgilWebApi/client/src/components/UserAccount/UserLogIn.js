@@ -1,19 +1,31 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {UserProfileContext} from "../apiManager/UserProfileApi";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import {Link} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 
 const UserLogIn = () => {
+    const history = useHistory();
     const {userProfile, getUserProfile} = useContext(UserProfileContext);
-
+    const [profile, setProfile] = useState();
     
+    const handleFieldChange = evt => {
+        const stateToChange = { ...profile};
+        stateToChange[evt.target.id] = evt.target.value;
+        setProfile(stateToChange);
+        console.log(profile);
+    }
+    const loginSubmit = (e) => {
+        e.preventDefault();
+       console.log(profile.username);
+        getUserProfile(profile.username);
+    }
 
     return (
-        <Form className="container">
+        <Form onSubmit={loginSubmit} className="container">
         <fieldset>
           <FormGroup>
-            <Label for="email">Username</Label>
-            <Input id="email" type="text"  />
+            <Label for="username">Username</Label>
+            <Input onChange={handleFieldChange} id="username" type="text"  />
           </FormGroup>
           <FormGroup>
             <Button>Login</Button>

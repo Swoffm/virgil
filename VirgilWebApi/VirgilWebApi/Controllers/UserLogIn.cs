@@ -20,12 +20,22 @@ namespace VirgilWebApi.Controllers
 
         }
 
-
-        [HttpGet]
+        [HttpGet("{name}")]
         public IActionResult Get(string name)
         {
-            return Ok(_userProfileRepository.GetByUserName(name));
+           var user = _userProfileRepository.GetByUserName(name);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
+
+        //[HttpGet]
+        //public IActionResult Get()
+        //{
+        //    return Ok(_userProfileRepository.GetAll());
+        //}
 
 
 

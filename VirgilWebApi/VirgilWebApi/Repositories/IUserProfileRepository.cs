@@ -8,6 +8,8 @@ namespace VirgilWebApi.Repositories
 {
    public interface IUserProfileRepository
     {
-        UserProfile GetByUserName(string name);
+        public UserProfile GetByUserName(string name);
+
+        public List<UserProfile> GetAll();
     }
 }

@@ -39,5 +39,36 @@ namespace VirgilWebApi.Repositories
                 }
             }
         }
+
+        public List<UserProfile> GetAll()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT id, username FROM UserData";
+                  
+
+                    var reader = cmd.ExecuteReader();
+
+                    var userProfile = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        userProfile.Add(new UserProfile()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("id")),
+                            UserName = reader.GetString(reader.GetOrdinal("username"))
+                        });
+                    }
+
+                    reader.Close();
+
+                    return userProfile;
+
+                }
+            }
+        }
     }
 }
