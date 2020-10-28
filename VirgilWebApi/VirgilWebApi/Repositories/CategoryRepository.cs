@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,132 @@ namespace VirgilWebApi.Repositories
     {
         public CategoryRepository(IConfiguration configuration) : base(configuration) { }
 
-        public void CreateCategory(Category category)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Category> GetAll(int userId)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT id, userId, Category FROM Category WHERE userId = @userId";
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var categories = new List<Category>();
+
+                    while (reader.Read())
+                    {
+                        categories.Add(new Category()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Category")),
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId"))
+                        });
+                    }
+
+                    reader.Close();
+
+                    return categories;
+                }
+            }
         }
 
         public Category GetById(int categoryId)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT id, userId, Category FROM Category WHERE Id = @Id";
+
+                    cmd.Parameters.AddWithValue("@id", categoryId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Category category = new Category()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Category")),
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId"))
+                        };
+
+                        reader.Close();
+                        return category;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return null;
+                    }
+                }
+            }
+        }
+
+
+        public void CreateCategory(Category category)
+        {
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Category (Name) VALUES (@name);";
+                    cmd.Parameters.AddWithValue("@name", category.Name);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+            }
+
         }
 
         public void UpdateCategory(Category category)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                UPDATE Category
+                                SET Name = @name
+                                WHERE id = @id";
+
+                    cmd.Parameters.AddWithValue("@name", category.Name);
+                    cmd.Parameters.AddWithValue("@id", category.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public void DeleteCategory(int categoryId)
+        {
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @" Update Book SET CategoryId = (SELECT c.id FROM Category c
+                    WHERE c.Category = 'other') WHERE CategoryId = @id;
+                    DELETE Category WHERE id = @id;";
+                    cmd.Parameters.AddWithValue("@id", categoryId);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+            }
+
         }
     }
 }

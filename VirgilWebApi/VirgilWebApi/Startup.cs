@@ -28,6 +28,7 @@ namespace VirgilWebApi
         {
             services.AddControllers();
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
         }
 
