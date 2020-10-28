@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VirgilWebApi.Model;
 using VirgilWebApi.Repositories;
 
 namespace VirgilWebApi.Controllers
@@ -40,6 +41,12 @@ namespace VirgilWebApi.Controllers
             return NoContent();
         }
 
+        [HttpPost]
+        public IActionResult Post(Category category)
+        {
+            _categoryRepository.CreateCategory(category);
+            return CreatedAtAction("Get", new { id = category.Id }, category);
+        }
 
 
 

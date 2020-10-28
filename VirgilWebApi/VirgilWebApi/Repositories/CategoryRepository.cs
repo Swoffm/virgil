@@ -86,8 +86,9 @@ namespace VirgilWebApi.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Category (Name) VALUES (@name);";
+                    cmd.CommandText = @"INSERT INTO Category (Category, userId) VALUES (@name, @userId);";
                     cmd.Parameters.AddWithValue("@name", category.Name);
+                    cmd.Parameters.AddWithValue("@userId", category.UserId);
 
                     cmd.ExecuteNonQuery();
 
