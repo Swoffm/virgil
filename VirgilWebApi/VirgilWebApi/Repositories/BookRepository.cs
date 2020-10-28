@@ -11,15 +11,39 @@ namespace VirgilWebApi.Repositories
     {
         public BookRepository(IConfiguration configuration) : base(configuration) { }
 
-        public void AddBook(int userId)
+        public void AddBook(Book book)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Book (bookName, UserId, BookLink, Details, CategoryId)
+                    VALUES (@bookName, @userId, @bookLink, @details, @categoryId)";
+                    cmd.Parameters.AddWithValue("@bookName", book.BookName);
+                    cmd.Parameters.AddWithValue("@userId", book.UserId);
+                    cmd.Parameters.AddWithValue("@bookLink", book.BookLink);
+                    cmd.Parameters.AddWithValue("@details", book.Details);
+                    cmd.Parameters.AddWithValue("@categoryId", book.CategoryId);
 
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void DeleteBook(int userId)
+        public void DeleteBook(int bookId)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Book WHERE Id = @bookId";
+                    cmd.Parameters.AddWithValue("@bookId", bookId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<Book> GetAll(int userId)
@@ -55,9 +79,61 @@ namespace VirgilWebApi.Repositories
             }
         }
 
-        public Book GetBook(int userId)
+        public Book GetBook(int userId, int bookId)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id, b.BookName, b.UserId, b.BookLink, b.Details, b.CategoryId FROM Book b WHERE b.UserId = @userId AND b.Id = @bookId";
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@bookId", bookId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var book = new Book();
+
+                    while (reader.Read())
+                    {
+                        book = (new Book()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("id")),
+                            BookName = reader.GetString(reader.GetOrdinal("BookName")),
+                            UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                            BookLink = reader.GetString(reader.GetOrdinal("BookLink")),
+                            Details = reader.GetString(reader.GetOrdinal("Details")),
+                            CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId"))
+                        });
+                    }
+                    reader.Close();
+
+                    return book;
+                }
+            }
         }
+
+        public void UpdateBook(Book book)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Book SET bookName = @bookName, UserId = @userId, BookLink = @bookLink, Details = @details, CategoryId = @categoryId WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@bookName", book.BookName);
+                    cmd.Parameters.AddWithValue("@userId", book.UserId);
+                    cmd.Parameters.AddWithValue("@id", book.Id);
+                    cmd.Parameters.AddWithValue("@bookLink", book.BookLink);
+                    cmd.Parameters.AddWithValue("@details", book.Details);
+                    cmd.Parameters.AddWithValue("@categoryId", book.CategoryId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
     }
 }

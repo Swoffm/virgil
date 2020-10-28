@@ -11,10 +11,11 @@ namespace VirgilWebApi.Repositories
     {
         public List<Book> GetAll(int userId);
 
-        public Book GetBook(int userId);
+        public Book GetBook(int userId, int bookId);
 
-        public void DeleteBook(int userId);
+        public void DeleteBook(int bookId);
 
-        public void AddBook(int userId);
+        public void UpdateBook(Book book);
+        public void AddBook(Book book);
     }
 }
