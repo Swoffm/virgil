@@ -105,7 +105,8 @@ namespace VirgilWebApi.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"
+                    cmd.CommandText = @"Update Book SET CategoryId = (SELECT c.id FROM Category c
+                    WHERE c.Category = 'other') WHERE CategoryId = @id;
                                 UPDATE Category
                                 SET Category = @name, userId = @userId
                                 WHERE id = @id";
