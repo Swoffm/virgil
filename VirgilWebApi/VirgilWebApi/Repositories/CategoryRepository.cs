@@ -107,10 +107,11 @@ namespace VirgilWebApi.Repositories
                 {
                     cmd.CommandText = @"
                                 UPDATE Category
-                                SET Name = @name
+                                SET Category = @name, userId = @userId
                                 WHERE id = @id";
 
                     cmd.Parameters.AddWithValue("@name", category.Name);
+                    cmd.Parameters.AddWithValue("@userId", category.UserId);
                     cmd.Parameters.AddWithValue("@id", category.Id);
 
                     cmd.ExecuteNonQuery();

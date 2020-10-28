@@ -49,6 +49,14 @@ namespace VirgilWebApi.Controllers
         }
 
 
+        [HttpPut]
+        public IActionResult Put(Category category)
+        {
+            _categoryRepository.UpdateCategory(category);
+            return NoContent();
+        }
+
+
 
     }
 }
