@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using VirgilWebApi.Model;
 
@@ -13,7 +14,24 @@ namespace VirgilWebApi.Repositories
 
         public void CreateCollection(Collection collection)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Collection (name) VALUES (@colName);
+                INSERT INTO UserCollection (UserId, CollectionId)
+                VALUES (@userId, (SELECT id FROM Collection WHERE Name = @colName));";
+
+                    cmd.Parameters.AddWithValue("@userId", collection.UserId);
+                    cmd.Parameters.AddWithValue("@colName", collection.Name);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+             
+            }
+                    
         }
 
         public void DeleteCollection(int collectionId)

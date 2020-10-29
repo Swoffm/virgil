@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VirgilWebApi.Model;
 using VirgilWebApi.Repositories;
 
 namespace VirgilWebApi.Controllers
@@ -43,6 +44,15 @@ namespace VirgilWebApi.Controllers
         {
             _collectionRepository.DeleteCollection(colId);
             return NoContent();
+        }
+
+
+        [HttpPost]
+        public IActionResult Post(Collection col)
+        {
+            _collectionRepository.CreateCollection(col);
+            return CreatedAtAction("Get", new { id = col.Id }, col);
+
         }
     }
 }
