@@ -38,7 +38,7 @@ namespace VirgilWebApi.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Book WHERE Id = @bookId";
+                    cmd.CommandText = @"DELETE FROM BookCollection WHERE bookId = @bookId; DELETE FROM Book WHERE Id = @bookId;";
                     cmd.Parameters.AddWithValue("@bookId", bookId);
 
                     cmd.ExecuteNonQuery();
