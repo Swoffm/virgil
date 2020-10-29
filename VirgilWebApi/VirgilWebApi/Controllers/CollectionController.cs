@@ -25,5 +25,17 @@ namespace VirgilWebApi.Controllers
         {
             return Ok(_collectionRepository.GetAll(userId));
         }
+
+        [HttpGet("cb={colId}")]
+        public IActionResult GetBooks(int colId)
+        {
+            return Ok(_collectionRepository.GetAllBooksInCollection(colId));
+        }
+
+        [HttpGet("c={colId}")]
+        public IActionResult GetCollection(int colId)
+        {
+            return Ok(_collectionRepository.GetById(colId));
+        }
     }
 }
