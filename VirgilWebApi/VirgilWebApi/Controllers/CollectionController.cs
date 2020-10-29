@@ -37,5 +37,12 @@ namespace VirgilWebApi.Controllers
         {
             return Ok(_collectionRepository.GetById(colId));
         }
+
+        [HttpDelete("{colId}")]
+        public IActionResult Delete(int colId)
+        {
+            _collectionRepository.DeleteCollection(colId);
+            return NoContent();
+        }
     }
 }
