@@ -159,7 +159,18 @@ INNER JOIN BookCollection bc ON b.id = bc.BookId WHERE bc.CollectionId = @collec
 
         public void UpdateCollection(Collection collection)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"Update Collection SET Name = @name, id = @id";
+                    cmd.Parameters.AddWithValue("@name", collection.Name);
+                    cmd.Parameters.AddWithValue("@id", collection.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

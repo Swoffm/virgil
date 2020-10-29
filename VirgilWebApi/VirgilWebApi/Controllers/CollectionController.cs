@@ -52,7 +52,15 @@ namespace VirgilWebApi.Controllers
         {
             _collectionRepository.CreateCollection(col);
             return CreatedAtAction("Get", new { id = col.Id }, col);
-
         }
+
+        [HttpPut]
+        public IActionResult Put(Collection collection)
+        {
+            _collectionRepository.UpdateCollection(collection);
+            return NoContent();
+        }
+
+
     }
 }
