@@ -13,7 +13,7 @@ const UserProfileManager = (props) => {
     
 const apiUrl = "/api/UserLogIn";
 
-   async function getUserProfile(name) {
+    const getUserProfile = (name) => {
         
         return fetch(`${apiUrl}/${name}`, {
             method: "GET",
@@ -30,18 +30,28 @@ const apiUrl = "/api/UserLogIn";
            if(data.userName != null) {
            sessionStorage.setItem("userName", JSON.stringify(data));
            setIsLoggedIn(true);
-           history.push("/")
+           console.log(isLoggedIn);
            }
            else {
                alert ("Invalid username")
            }
            
-        })
+        }).then(() => {history.push("/"); console.log(isLoggedIn); })
     
     }
 
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        getUserProfile(profile.username);
+    }
+
+    const logOut = () => {
+        setIsLoggedIn(false);
+        sessionStorage.clear();
+    }
+
     return (
-        <UserProfileContext.Provider value={{profile, isLoggedIn, getUserProfile}}>
+        <UserProfileContext.Provider value={{profile, setProfile, loginSubmit, isLoggedIn, logOut, setIsLoggedIn, getUserProfile}}>
             {props.children}
         </UserProfileContext.Provider>
     )
