@@ -28,7 +28,7 @@ const apiUrl = "/api/UserLogIn";
            
            setProfile(data);
            if(data.userName != null) {
-           sessionStorage.setItem("userName", JSON.stringify(data));
+           sessionStorage.setItem("id", JSON.stringify(data.id));
            setIsLoggedIn(true);
            console.log(isLoggedIn);
            }
@@ -42,7 +42,7 @@ const apiUrl = "/api/UserLogIn";
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        getUserProfile(profile.username);
+        getUserProfile(profile.username)
     }
 
     const logOut = () => {

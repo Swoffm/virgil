@@ -4,21 +4,31 @@ import {CategoryContext} from "../apiManager/CategoryApi";
 
 import { Button } from "reactstrap";
 import {Link} from "react-router-dom";
-import CategoryList from "./CategoryList"
+import CategoryCard from "./CategoryCard"
 
 
 const Category = () => {
     // const {isLoggedIn} = useContext(UserProfileContext);
-    const {getAllCategories, category} = useContext(CategoryContext);
-    const userId = sessionStorage.getItem("userName").slice(-2).split("}")[0]
+    const {getAllCategories, deleteCategories, category} = useContext(CategoryContext);
+    const userId = sessionStorage.getItem("id");
     
 
 useEffect(()=> {
     getAllCategories(userId);
 }, []);
 
+const deleteCategoryFromList = (id) => {
 
-console.log(userId);
+    if(window.confirm("Are you sure?"))
+    {
+        deleteCategories(id).then(() => {
+        getAllCategories(userId);
+      });
+    }
+
+  }
+
+
 //add a conditonal to check for a null return
     return (
         <>
@@ -26,7 +36,7 @@ console.log(userId);
         <h1>Categories</h1>
         <p>
           <Link to="/category/add">
-          <Button color="primary">Create</Button>{" "}
+          <Button color="primary">Create</Button>
           </Link>
         </p>
         <table className="table table-striped">
@@ -37,8 +47,8 @@ console.log(userId);
             </tr>
           </thead>
           <tbody>
-            {category.map((element) => (
-              <CategoryList key={element.id} category={element}/>
+            {category && category.map((element) => (
+              <CategoryCard key={element.id} delete={deleteCategoryFromList} category={element}/>
             ))}
           </tbody>
         </table>

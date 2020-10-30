@@ -45,7 +45,7 @@ namespace VirgilWebApi.Controllers
         public IActionResult Post(Category category)
         {
             _categoryRepository.CreateCategory(category);
-            return CreatedAtAction("Get", new { id = category.Id }, category);
+            return NoContent();
         }
 
 
