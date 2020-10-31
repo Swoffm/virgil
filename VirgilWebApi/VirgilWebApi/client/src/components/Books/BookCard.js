@@ -9,11 +9,11 @@ const BookCard = (props) => {
     const history = useHistory();
 
     const Edit = () => {
-        history.push(`category/${props.book.id}/edit`)
+        history.push(`book/${props.book.id}/edit`)
     }
 
     const Details = () => {
-        history.push(`category/${props.book.id}/details`)
+        history.push(`book/${props.book.id}/detail`)
     }
 
     return (

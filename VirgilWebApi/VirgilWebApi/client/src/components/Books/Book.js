@@ -32,7 +32,7 @@ return (
     <div className="container">
     <h1>Books</h1>
     <p>
-      <Link to="/category/add">
+      <Link to="/book/add">
       <Button color="primary">Create</Button>
       </Link>
     </p>
