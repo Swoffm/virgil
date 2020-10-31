@@ -28,10 +28,19 @@ const BookApi = props => {
         })
     }
 
+    const getBookById = (bookId, userId) => {
+        return fetch(`${apiUrl}/q=${userId}/b=${bookId}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => res.json())
+    }
+
   
 
    return ( 
-   <BookContext.Provider value={{ book, deleteBook, getAllBooks }}>
+   <BookContext.Provider value={{ book, getBookById, deleteBook, getAllBooks }}>
     {props.children}
 </BookContext.Provider>
  )

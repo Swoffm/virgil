@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router";
 import { CategoryContext } from "../apiManager/CategoryApi";
-import Category from "./Category";
 
 
 
