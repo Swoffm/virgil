@@ -8,7 +8,7 @@ const CategoryApi = props => {
     const [category, setCategory] = useState([]);
     
 
-const apiUrl = "/api/category";
+    const apiUrl = "/api/category";
 
     const getAllCategories = (userId) => {
         return fetch(`${apiUrl}/${userId}`, {

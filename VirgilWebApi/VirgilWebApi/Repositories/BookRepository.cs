@@ -53,7 +53,8 @@ namespace VirgilWebApi.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id, b.BookName, b.UserId, b.BookLink, b.Details, b.CategoryId FROM Book b WHERE b.UserId = @userId";
+                    cmd.CommandText = @"SELECT b.Id, b.BookName, b.UserId, b.BookLink, b.Details, b.CategoryId, c.Category FROM Book b INNER JOIN Category c 
+                    ON b.CategoryId = c.Id WHERE b.UserId = @userId";
                     cmd.Parameters.AddWithValue("@userId", userId);
 
                     var reader = cmd.ExecuteReader();
@@ -69,7 +70,8 @@ namespace VirgilWebApi.Repositories
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
                             BookLink = reader.GetString(reader.GetOrdinal("BookLink")),
                             Details = reader.GetString(reader.GetOrdinal("Details")),
-                            CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId"))
+                            CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
+                            Category = reader.GetString(reader.GetOrdinal("Category"))
                         });
                     }
                     reader.Close();

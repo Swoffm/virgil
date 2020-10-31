@@ -6,7 +6,7 @@ import UserProfileManager from "./components/apiManager/UserProfileApi";
 import AppView from "./components/appView";
 import AppNav from "./components/nav/Nav";
 import CategoryApi from "./components/apiManager/CategoryApi";
-
+import BookApi from "./components/apiManager/BookApi";
 
 const App = () => {
 
@@ -14,12 +14,14 @@ const App = () => {
         <>
 
         <Router>
+            <BookApi>
             <CategoryApi>
         <UserProfileManager>
           <AppNav />
           <AppView />
           </UserProfileManager>
           </CategoryApi>
+          </BookApi>
           </Router>
           </>
     )

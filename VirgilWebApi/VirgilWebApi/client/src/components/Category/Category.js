@@ -43,7 +43,6 @@ const deleteCategoryFromList = (id) => {
           <thead>
             <tr>
               <th>Category Name</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>

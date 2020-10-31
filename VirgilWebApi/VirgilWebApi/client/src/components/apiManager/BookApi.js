@@ -16,15 +16,25 @@ const BookApi = props => {
                 'Content-Type': 'application/json'
             }
         }).then((res) => res.json())
-        .then(setCategory);
+        .then(setBook);
     }
 
-    <BookContext.Provider value={{ getAllBooks }}>
+    const deleteBook = (bookId) => {
+        return fetch (`${apiUrl}/b=${bookId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+  
+
+   return ( 
+   <BookContext.Provider value={{ book, deleteBook, getAllBooks }}>
     {props.children}
 </BookContext.Provider>
-
-
-
+ )
 }
 
 export default BookApi;

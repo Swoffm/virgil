@@ -18,6 +18,8 @@ namespace VirgilWebApi.Model
 
         public int CategoryId { get; set; }
 
+        public string Category { get; set; }
+
 
     }
 }

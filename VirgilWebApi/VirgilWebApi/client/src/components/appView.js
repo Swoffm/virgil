@@ -5,7 +5,7 @@ import UserLogIn from "./UserAccount/UserLogIn";
 import Category from "./Category/Category";
 import CategoryForm from "./Category/CategoryFrom";
 import CategoryEdit from "./Category/CategoryEditForm";
-
+import Book from "./Books/Book";
 
 
 export default function AppView() {
@@ -34,6 +34,10 @@ export default function AppView() {
 
             <Route path="/category/:id/edit" exact>
              <CategoryEdit />
+            </Route>
+
+            <Route path="/Book" exact>
+             <Book />
             </Route>
 
             
