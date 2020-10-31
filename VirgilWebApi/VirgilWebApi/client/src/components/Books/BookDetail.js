@@ -23,7 +23,7 @@ const BookDetail = props => {
 if (!book) {
     return null;
 }
-    //Book details needs a return, and possibliy a check for data
+    
     //book details also needs the ability to delete or edit from the view
 
     return (
