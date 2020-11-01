@@ -9,7 +9,7 @@ import Book from "./Books/Book";
 import BookDetail from "./Books/BookDetail";
 import NewBookForm from "./Books/NewBookForm";
 import BookEdit from "./Books/BookEdit";
-
+import Collection from "./Collection/Collection";
 
 export default function AppView() {
 
@@ -56,6 +56,12 @@ export default function AppView() {
 
                     <Route path="/book/:id/edit" exact>
                         <BookEdit />
+                    </Route>
+
+                    //collection components
+
+                    <Route path="/collection" exact>
+                        <Collection />
                     </Route>
 
 

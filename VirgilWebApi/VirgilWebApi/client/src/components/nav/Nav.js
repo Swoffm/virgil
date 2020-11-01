@@ -18,6 +18,7 @@ let user = sessionStorage.getItem("id");
       {user &&
       <>  
       
+      <Nav.Link href="/collection">Collection</Nav.Link>
       <Nav.Link href="/category">Category</Nav.Link>
        <Nav.Link href="/book">Books</Nav.Link>
       <Nav.Link href="/" onClick={logOut}>Logout</Nav.Link>
