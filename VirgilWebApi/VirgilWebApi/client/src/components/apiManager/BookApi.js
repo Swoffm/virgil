@@ -37,10 +37,21 @@ const BookApi = props => {
         }).then((res) => res.json())
     }
 
+    const addBook = (book) => {
+        console.log(book)
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify(book)
+        })
+    }
+
   
 
    return ( 
-   <BookContext.Provider value={{ book, getBookById, deleteBook, getAllBooks }}>
+   <BookContext.Provider value={{ book, addBook, getBookById, deleteBook, getAllBooks }}>
     {props.children}
 </BookContext.Provider>
  )

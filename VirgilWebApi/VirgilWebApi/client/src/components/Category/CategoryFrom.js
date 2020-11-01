@@ -6,6 +6,8 @@ const CategoryForm = (props) => {
     const [category, setCategory] = useState({id: 1, Name: ""});
     const [isLoading, setIsLoading] = useState(false);
     const {addCategory} = useContext(CategoryContext);
+
+    
     const handleFieldChange = evt => {
         const stateToChange = { ...category};
         stateToChange[evt.target.id] = evt.target.value;
