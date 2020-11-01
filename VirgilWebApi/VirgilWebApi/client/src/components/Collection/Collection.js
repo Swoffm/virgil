@@ -8,8 +8,21 @@ import { Button } from "reactstrap";
 
 const Collection = () => {
 
-    const {getCollection, collection} = useContext(CollectionContext);
+    const {getCollection, collection, deleteCollection} = useContext(CollectionContext);
     const userId = sessionStorage.getItem("id");
+
+
+    const deleteColFromList = (id) => {
+
+        if(window.confirm("Are you sure?"))
+        {
+            deleteCollection(parseInt(id)).then(() => {
+            getCollection(parseInt(userId));
+          });
+        }
+    
+      }
+
 
     useEffect(() => {
 getCollection(parseInt(userId));
@@ -34,7 +47,7 @@ getCollection(parseInt(userId));
       </thead>
       <tbody>
         {collection && collection.map((element) => (
-          <CollectionCard key={element.id} collection={element} />
+          <CollectionCard key={element.id} delete={deleteColFromList} collection={element} />
         ))}
       </tbody>
     </table>

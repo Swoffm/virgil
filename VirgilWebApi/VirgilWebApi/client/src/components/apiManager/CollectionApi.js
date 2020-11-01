@@ -22,9 +22,18 @@ const CollectionApi = props => {
 
     }
 
+    const deleteCollection = colId => {
+        return fetch (`${apiUrl}/${colId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
 
 return (
-    <CollectionContext.Provider value={{getCollection, collection }}>
+    <CollectionContext.Provider value={{getCollection, deleteCollection, collection }}>
     {props.children}
 </CollectionContext.Provider>
 )
