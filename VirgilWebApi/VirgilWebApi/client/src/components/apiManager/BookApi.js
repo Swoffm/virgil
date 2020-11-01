@@ -48,10 +48,21 @@ const BookApi = props => {
         })
     }
 
+    const updateBook = (book) => {
+        console.log(book)
+        return fetch(`${apiUrl}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json"
+        },
+        body: JSON.stringify(book)
+        }
+        )
+    }
+
   
 
    return ( 
-   <BookContext.Provider value={{ book, addBook, getBookById, deleteBook, getAllBooks }}>
+   <BookContext.Provider value={{ book, addBook, updateBook, getBookById, deleteBook, getAllBooks }}>
     {props.children}
 </BookContext.Provider>
  )

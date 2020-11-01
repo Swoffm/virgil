@@ -49,7 +49,7 @@ namespace VirgilWebApi.Controllers
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put(Book book)
         {
             _bookRepository.UpdateBook(book);

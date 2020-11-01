@@ -29,7 +29,6 @@ const NewBookForm = (props) => {
 
     const newBook = evt => {
         evt.preventDefault();
-        console.log(category);
         if(book.category == "NA" || book.category == null || book.details == "" ||
         book.bookLink == "" || book.bookName == ""){
             window.alert("Must input a name");

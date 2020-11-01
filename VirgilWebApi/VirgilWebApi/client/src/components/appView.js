@@ -8,7 +8,7 @@ import CategoryEdit from "./Category/CategoryEditForm";
 import Book from "./Books/Book";
 import BookDetail from "./Books/BookDetail";
 import NewBookForm from "./Books/NewBookForm";
-
+import BookEdit from "./Books/BookEdit";
 
 
 export default function AppView() {
@@ -52,6 +52,10 @@ export default function AppView() {
 
                     <Route path="/book/:id/detail" exact>
                         <BookDetail />
+                    </Route>
+
+                    <Route path="/book/:id/edit" exact>
+                        <BookEdit />
                     </Route>
 
 
