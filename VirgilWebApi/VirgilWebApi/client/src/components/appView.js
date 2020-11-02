@@ -14,8 +14,8 @@ import CollectionForm from "./Collection/CollectionForm";
 import CollectionEdit from "./Collection/CollectionEdit";
 import CollectionDetail from "./Collection/CollectionDetail";
 import AddBook from "./Collection/AddBook";
-
-
+import Register from "./UserAccount/Register";
+import Account from "./UserAccount/Account";
 
 
 export default function AppView() {
@@ -33,6 +33,16 @@ export default function AppView() {
                         <UserLogIn />
                     </Route>
 
+                    <Route path="/register">
+                        <Register />
+                    </Route>
+
+                    <Route path="/account">
+                        <Account />
+                    </Route>
+
+
+//category
 
                     <Route path="/category" exact>
                         <Category />

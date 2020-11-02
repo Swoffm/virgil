@@ -5,7 +5,7 @@ import {useHistory, Link} from "react-router-dom";
 
 const UserLogIn = () => {
     const history = useHistory();
-    const {getUserProfile, setProfile, loginSubmit, profile} = useContext(UserProfileContext);
+    const {setProfile, loginSubmit, profile} = useContext(UserProfileContext);
     // const [profile, setProfile] = useState();
     
     const handleFieldChange = evt => {

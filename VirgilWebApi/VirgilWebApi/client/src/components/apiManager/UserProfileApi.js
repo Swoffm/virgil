@@ -40,6 +40,49 @@ const apiUrl = "/api/UserLogIn";
     
     }
 
+    const checkUser = (name) => {
+        
+         return fetch(`${apiUrl}/${name}`, {
+            method: "GET",
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            
+        }
+           )
+         .then(result => result.json())
+       
+    }
+
+    const addUser = user => {
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"  
+            },
+            body: JSON.stringify(user)
+        }).then((data) => {
+            setProfile(data);
+           if(data.userName != null) {
+           sessionStorage.setItem("id", JSON.stringify(data.id));
+           setIsLoggedIn(true);
+           console.log(isLoggedIn);
+           }
+           else {
+               alert ("Invalid username")
+           }
+        })
+    }
+
+    const deleteUser = id => {
+        return fetch (`${apiUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     const loginSubmit = (e) => {
         e.preventDefault();
         getUserProfile(profile.username)
@@ -51,7 +94,7 @@ const apiUrl = "/api/UserLogIn";
     }
 
     return (
-        <UserProfileContext.Provider value={{profile, setProfile, loginSubmit, isLoggedIn, logOut, setIsLoggedIn, getUserProfile}}>
+        <UserProfileContext.Provider value={{profile, deleteUser, addUser, checkUser, setProfile, loginSubmit, isLoggedIn, logOut, setIsLoggedIn, getUserProfile}}>
             {props.children}
         </UserProfileContext.Provider>
     )
