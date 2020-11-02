@@ -11,5 +11,9 @@ namespace VirgilWebApi.Repositories
         public UserProfile GetByUserName(string name);
 
         public List<UserProfile> GetAll();
+
+        public void CreateUserAccount(UserProfile profile);
+
+        public void DeleteUserAccount(int userId);
     }
 }

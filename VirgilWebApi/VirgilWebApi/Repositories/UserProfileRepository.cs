@@ -70,5 +70,45 @@ namespace VirgilWebApi.Repositories
                 }
             }
         }
+
+        public void CreateUserAccount(UserProfile profile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO UserData (username) VALUES (@username); 
+                        INSERT INTO Category (Category, UserId) VALUES ('Other', 
+                        (SELECT u.id from UserData u where u.username = @username));";
+
+                    cmd.Parameters.AddWithValue("@username", profile.UserName);
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
+        public void DeleteUserAccount(int userId)
+        {
+
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE Userdata WHERE id = @userId";
+
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+
+        }
     }
 }

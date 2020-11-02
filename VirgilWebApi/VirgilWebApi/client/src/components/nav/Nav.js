@@ -14,10 +14,10 @@ let user = sessionStorage.getItem("id");
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
       {user &&
       <>  
       
+      <Nav.Link href="/account">Account</Nav.Link>
       <Nav.Link href="/collection">Collection</Nav.Link>
       <Nav.Link href="/category">Category</Nav.Link>
        <Nav.Link href="/book">Books</Nav.Link>
