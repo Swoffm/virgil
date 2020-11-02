@@ -34,7 +34,7 @@ getCollection(parseInt(userId));
         <div className="container">
     <h1>Collection</h1>
     <p>
-      <Link to="/book/add">
+      <Link to="/collection/add">
       <Button color="primary">Create</Button>
       </Link>
     </p>
@@ -42,7 +42,6 @@ getCollection(parseInt(userId));
       <thead>
         <tr>
           <th>Collection Name</th>
-          <th># of Books</th>
         </tr>
       </thead>
       <tbody>

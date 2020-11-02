@@ -51,7 +51,7 @@ namespace VirgilWebApi.Controllers
         public IActionResult Post(Collection col)
         {
             _collectionRepository.CreateCollection(col);
-            return CreatedAtAction("Get", new { id = col.Id }, col);
+            return NoContent();
         }
 
         [HttpPut]

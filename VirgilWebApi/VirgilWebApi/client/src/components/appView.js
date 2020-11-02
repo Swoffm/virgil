@@ -10,6 +10,10 @@ import BookDetail from "./Books/BookDetail";
 import NewBookForm from "./Books/NewBookForm";
 import BookEdit from "./Books/BookEdit";
 import Collection from "./Collection/Collection";
+import CollectionForm from "./Collection/CollectionForm";
+
+
+
 
 export default function AppView() {
 
@@ -62,6 +66,10 @@ export default function AppView() {
 
                     <Route path="/collection" exact>
                         <Collection />
+                    </Route>
+
+                    <Route path="/collection/add" exact>
+                        <CollectionForm />
                     </Route>
 
 

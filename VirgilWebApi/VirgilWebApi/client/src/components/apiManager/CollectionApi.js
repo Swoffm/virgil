@@ -31,9 +31,19 @@ const CollectionApi = props => {
         })
     }
 
+    const newCollection = collection => {
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"  
+            },
+            body: JSON.stringify(collection)
+        })
+    }
+
 
 return (
-    <CollectionContext.Provider value={{getCollection, deleteCollection, collection }}>
+    <CollectionContext.Provider value={{getCollection, newCollection, deleteCollection, collection }}>
     {props.children}
 </CollectionContext.Provider>
 )
