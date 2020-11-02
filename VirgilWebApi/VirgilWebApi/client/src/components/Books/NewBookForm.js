@@ -17,8 +17,6 @@ const NewBookForm = (props) => {
         const stateToChange = { ...book};
         stateToChange[evt.target.id] = evt.target.value;
         setBook(stateToChange);
-        
-       
     }
 
 

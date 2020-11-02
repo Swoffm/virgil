@@ -31,6 +31,15 @@ const CollectionApi = props => {
         })
     }
 
+    const deleteBook = id => {
+        return fetch (`${apiUrl}/c=${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     const newCollection = collection => {
         return fetch(`${apiUrl}`, {
             method: "POST",
@@ -41,9 +50,49 @@ const CollectionApi = props => {
         })
     }
 
+    const getCollectionById = id => {
+        return fetch(`${apiUrl}/c=${id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => res.json())
+    }
+
+    const getBooksInCollection = id => {
+        return fetch(`${apiUrl}/cb=${id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => res.json())
+    }
+
+    const addBookToCollection = (bookId, colId) => {
+        return fetch(`${apiUrl}/b=${bookId}/c=${colId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"  
+            },
+            body: JSON.stringify(bookId)
+
+            
+        })
+    }
+
+
+    const updateCollection = (collection) => {
+        return fetch(`${apiUrl}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"  
+            },
+            body: JSON.stringify(collection)
+        })
+    }
 
 return (
-    <CollectionContext.Provider value={{getCollection, newCollection, deleteCollection, collection }}>
+    <CollectionContext.Provider value={{getCollection, deleteBook, addBookToCollection, updateCollection, getBooksInCollection, getCollectionById, newCollection, deleteCollection, collection }}>
     {props.children}
 </CollectionContext.Provider>
 )

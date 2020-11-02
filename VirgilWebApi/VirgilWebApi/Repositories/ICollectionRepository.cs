@@ -19,5 +19,11 @@ namespace VirgilWebApi.Repositories
         public void UpdateCollection(Collection collection);
 
         public void DeleteCollection(int collectionId);
+
+        public void AddBookToCollection(int bookId, int colId);
+
+
+        public void DeleteBookFromCollection(int id);
+
     }
 }

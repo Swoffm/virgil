@@ -11,6 +11,9 @@ import NewBookForm from "./Books/NewBookForm";
 import BookEdit from "./Books/BookEdit";
 import Collection from "./Collection/Collection";
 import CollectionForm from "./Collection/CollectionForm";
+import CollectionEdit from "./Collection/CollectionEdit";
+import CollectionDetail from "./Collection/CollectionDetail";
+import AddBook from "./Collection/AddBook";
 
 
 
@@ -72,7 +75,17 @@ export default function AppView() {
                         <CollectionForm />
                     </Route>
 
+                    <Route path="/collection/:id/edit" exact>
+                        <CollectionEdit />
+                    </Route>
 
+                    <Route path="/collection/:id/detail" exact>
+                        <CollectionDetail />
+                    </Route>
+
+                    <Route path="/collection/:id/addBook" exact>
+                        <AddBook />
+                    </Route>
 
                 </Switch>
             </main>

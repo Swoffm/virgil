@@ -45,7 +45,7 @@ return (
       </thead>
       <tbody>
         {book && book.map((element) => (
-          <BookCard key={element.id} book={element} delete={deleteBookFromList}/>
+          <BookCard key={element.id} col={false} book={element} delete={deleteBookFromList}/>
         ))}
       </tbody>
     </table>

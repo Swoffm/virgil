@@ -12,6 +12,24 @@ namespace VirgilWebApi.Repositories
     {
         public CollectionRepository(IConfiguration configuration) : base(configuration) { }
 
+        public void AddBookToCollection(int bookId, int colId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO BookCollection (CollectionId, BookId) VALUES (@colId, @bookId)";
+                    cmd.Parameters.AddWithValue("@bookId", bookId);
+                    cmd.Parameters.AddWithValue("@colId", colId);
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
         public void CreateCollection(Collection collection)
         {
             using (var conn = Connection)
@@ -32,6 +50,22 @@ namespace VirgilWebApi.Repositories
              
             }
                     
+        }
+
+        public void DeleteBookFromCollection(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE BookCollection WHERE BookId = @id;";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void DeleteCollection(int collectionId)
@@ -164,10 +198,9 @@ INNER JOIN BookCollection bc ON b.id = bc.BookId WHERE bc.CollectionId = @collec
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"Update Collection SET Name = @name, id = @id";
+                    cmd.CommandText = @"Update Collection SET Name = @name WHERE id = @id";
                     cmd.Parameters.AddWithValue("@name", collection.Name);
                     cmd.Parameters.AddWithValue("@id", collection.Id);
-
                     cmd.ExecuteNonQuery();
                 }
             }

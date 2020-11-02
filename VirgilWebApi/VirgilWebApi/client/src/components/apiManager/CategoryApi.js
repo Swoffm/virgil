@@ -61,6 +61,8 @@ const CategoryApi = props => {
     }
 
 
+
+
     return (
         <CategoryContext.Provider value={{ getCategoryById, updateCategory, category, addCategory, deleteCategories, getAllCategories}}>
         {props.children}
