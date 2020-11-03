@@ -29,7 +29,7 @@ const CategoryForm = (props) => {
         let newCategory = {
             id: category.id,
             userId: parseInt(user),
-            name: category.Name
+            name: category.Name.toLowerCase()
 
         }
         console.log(newCategory.name)

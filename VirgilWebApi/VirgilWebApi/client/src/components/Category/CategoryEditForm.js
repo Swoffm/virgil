@@ -30,7 +30,7 @@ const CategoryEdit = props => {
         const newCategory = {
             id: category.id,
             userId: parseInt(user),
-            Name: category.name
+            Name: category.name.toLowerCase()
 
         }
         updateCategory(newCategory)

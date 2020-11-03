@@ -70,9 +70,7 @@ return (
            <BookCard key={element.id} delete={deleteBookFromList} book={element} /> 
        
             : null ) ) : book.map((element) => ( <BookCard key={element.id} delete={deleteBookFromList} book={element} /> ))  }
-        {/* {book && book.map((element) => (
-          <BookCard key={element.id} col={false} book={element} delete={deleteBookFromList}/>
-        ))} */}
+       
       </tbody>
     </table>
   </div>
