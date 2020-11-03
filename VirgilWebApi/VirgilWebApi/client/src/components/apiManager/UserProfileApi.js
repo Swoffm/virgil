@@ -61,16 +61,6 @@ const apiUrl = "/api/UserLogIn";
                 "Content-Type": "application/json"  
             },
             body: JSON.stringify(user)
-        }).then((data) => {
-            setProfile(data);
-           if(data.userName != null) {
-           sessionStorage.setItem("id", JSON.stringify(data.id));
-           setIsLoggedIn(true);
-           console.log(isLoggedIn);
-           }
-           else {
-               alert ("Invalid username")
-           }
         })
     }
 

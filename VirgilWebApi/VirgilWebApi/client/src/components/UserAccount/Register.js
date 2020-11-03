@@ -33,9 +33,12 @@ const Register = () => {
                 checkUser(userAccount.Name).then((data) => {
                     console.log(data.userName)
                     if(data.userName == null) {
-                        addUser(userAccount).then(() => {
+                        const newUserAccount = {
+                            username: userAccount.Name
+                        }
+                        addUser(newUserAccount).then(() => {
 
-                    // window.location.href = "/"
+                     window.location.href = "/login"
                 });
                     }
                     else {
