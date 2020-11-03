@@ -99,7 +99,13 @@ namespace VirgilWebApi.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE Userdata WHERE id = @userId";
+                    cmd.CommandText = @"
+        DELETE FROM BookCollection WHERE bookId = (SELECT id FROM book where userId = @userId);
+        DELETE Collection where Id = (SELECT collectionId FROM userCollection WHERE userId = @userId);
+        DELETE FROM UserCollection WHERE userId = @userId;
+        Delete Book WHERE userId = @userId;
+        DELETE FROM Category WHERE userId = @userId;
+        DELETE Userdata WHERE id = @userId";
 
                     cmd.Parameters.AddWithValue("@userId", userId);
 

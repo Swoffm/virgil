@@ -29,6 +29,7 @@ const apiUrl = "/api/UserLogIn";
            setProfile(data);
            if(data.userName != null) {
            sessionStorage.setItem("id", JSON.stringify(data.id));
+           sessionStorage.setItem("username", JSON.stringify(data.userName));
            setIsLoggedIn(true);
            console.log(isLoggedIn);
            }
