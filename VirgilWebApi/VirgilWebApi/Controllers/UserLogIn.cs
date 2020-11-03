@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VirgilWebApi.Repositories;
+using VirgilWebApi.Model;
+
 
 namespace VirgilWebApi.Controllers
 {
@@ -27,6 +29,22 @@ namespace VirgilWebApi.Controllers
             return Ok(user);
         } 
 
+
+        [HttpPost]
+        public IActionResult Post(UserProfile profile)
+        {
+            _userProfileRepository.CreateUserAccount(profile);
+            return NoContent();
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _userProfileRepository.DeleteUserAccount(id);
+            return NoContent();
+        }
 
 
     }

@@ -5,18 +5,15 @@ import {useHistory, Link} from "react-router-dom";
 
 const UserLogIn = () => {
     const history = useHistory();
-    const {isLoggedIn, getUserProfile} = useContext(UserProfileContext);
-    const [profile, setProfile] = useState();
+    const {setProfile, loginSubmit, profile} = useContext(UserProfileContext);
+    // const [profile, setProfile] = useState();
     
     const handleFieldChange = evt => {
         const stateToChange = { ...profile};
         stateToChange[evt.target.id] = evt.target.value;
         setProfile(stateToChange);
     }
-    const loginSubmit = (e) => {
-        e.preventDefault();
-        getUserProfile(profile.username);
-    }
+  
    
 
     return (

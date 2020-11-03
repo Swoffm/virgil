@@ -45,10 +45,11 @@ namespace VirgilWebApi.Controllers
         public IActionResult Post(Book book)
         {
             _bookRepository.AddBook(book);
-            return CreatedAtAction("Get", new { id = book.Id }, book);
+            return NoContent();
+
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put(Book book)
         {
             _bookRepository.UpdateBook(book);

@@ -51,13 +51,29 @@ namespace VirgilWebApi.Controllers
         public IActionResult Post(Collection col)
         {
             _collectionRepository.CreateCollection(col);
-            return CreatedAtAction("Get", new { id = col.Id }, col);
+            return NoContent();
         }
+
+
+        [HttpPost("b={bookId}/c={colId}")]
+        public IActionResult Post(int bookId, int colId)
+        {
+            _collectionRepository.AddBookToCollection(bookId, colId);
+            return NoContent();
+        }
+
 
         [HttpPut]
         public IActionResult Put(Collection collection)
         {
             _collectionRepository.UpdateCollection(collection);
+            return NoContent();
+        }
+
+        [HttpDelete("c={id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            _collectionRepository.DeleteBookFromCollection(id);
             return NoContent();
         }
 

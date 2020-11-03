@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, createContext } from "react";
 import {useHistory} from "react-router-dom";
 
 export const UserProfileContext = createContext();
@@ -13,7 +13,7 @@ const UserProfileManager = (props) => {
     
 const apiUrl = "/api/UserLogIn";
 
-   async function getUserProfile(name) {
+    const getUserProfile = (name) => {
         
         return fetch(`${apiUrl}/${name}`, {
             method: "GET",
@@ -28,20 +28,64 @@ const apiUrl = "/api/UserLogIn";
            
            setProfile(data);
            if(data.userName != null) {
-           sessionStorage.setItem("userName", JSON.stringify(data));
+           sessionStorage.setItem("id", JSON.stringify(data.id));
+           sessionStorage.setItem("username", JSON.stringify(data.userName));
            setIsLoggedIn(true);
-           history.push("/")
+           console.log(isLoggedIn);
            }
            else {
                alert ("Invalid username")
            }
            
-        })
+        }).then(() => {history.push("/"); console.log(isLoggedIn); })
     
     }
 
+    const checkUser = (name) => {
+        
+         return fetch(`${apiUrl}/${name}`, {
+            method: "GET",
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            
+        }
+           )
+         .then(result => result.json())
+       
+    }
+
+    const addUser = user => {
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"  
+            },
+            body: JSON.stringify(user)
+        })
+    }
+
+    const deleteUser = id => {
+        return fetch (`${apiUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        getUserProfile(profile.username)
+    }
+
+    const logOut = () => {
+        setIsLoggedIn(false);
+        sessionStorage.clear();
+    }
+
     return (
-        <UserProfileContext.Provider value={{profile, isLoggedIn, getUserProfile}}>
+        <UserProfileContext.Provider value={{profile, deleteUser, addUser, checkUser, setProfile, loginSubmit, isLoggedIn, logOut, setIsLoggedIn, getUserProfile}}>
             {props.children}
         </UserProfileContext.Provider>
     )
