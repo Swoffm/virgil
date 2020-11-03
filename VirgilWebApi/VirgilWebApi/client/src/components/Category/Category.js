@@ -39,11 +39,13 @@ const deleteCategoryFromList = (id) => {
           <Button color="primary">Create</Button>
           </Link>
         </p>
+        
         <table className="table table-striped">
           <thead>
             <tr>
               <th>Category Name</th>
             </tr>
+        
           </thead>
           <tbody>
             {category && category.map((element) => (

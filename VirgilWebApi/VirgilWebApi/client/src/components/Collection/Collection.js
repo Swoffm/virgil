@@ -10,6 +10,16 @@ const Collection = () => {
 
     const {getCollection, collection, deleteCollection} = useContext(CollectionContext);
     const userId = sessionStorage.getItem("id");
+    const [userSelect, setUserSelect] = useState();
+
+    const handleFieldChange = evt => {
+      const stateToChange = { ...userSelect };
+      stateToChange[evt.target.id] = evt.target.value;
+      setUserSelect(stateToChange);
+      console.log(userSelect)
+  };
+
+
 
 
     const deleteColFromList = (id) => {
@@ -38,6 +48,10 @@ getCollection(parseInt(userId));
       <Button color="primary">Create</Button>
       </Link>
     </p>
+    <select name="name" onClick={handleFieldChange} id="name">
+                                <option value="NA">Select a value</option>
+    {collection.map(element => <option key={element.id} value={element.id}>{element.name}</option>)}
+                            </select>
     <table className="table table-striped">
       <thead>
         <tr>
@@ -45,9 +59,14 @@ getCollection(parseInt(userId));
         </tr>
       </thead>
       <tbody>
-        {collection && collection.map((element) => (
-          <CollectionCard key={element.id} delete={deleteColFromList} collection={element} />
-        ))}
+        { userSelect !== undefined ? collection.map((element) => ( element.id == userSelect.name || userSelect.name == "NA" ? 
+           <CollectionCard key={element.id} delete={deleteColFromList} collection={element} /> 
+        
+            : null ) ) : collection.map((element) => ( <CollectionCard key={element.id} delete={deleteColFromList} collection={element} /> ))  }  
+
+           
+
+
       </tbody>
     </table>
   </div>
