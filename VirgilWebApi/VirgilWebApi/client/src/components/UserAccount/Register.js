@@ -8,7 +8,7 @@ const Register = () => {
 
 
         const [userAccount, setUserAccount] = useState([]);
-        const {profile, checkUser, addUser} = useContext(UserProfileContext);
+        const {setProfile, getUserProfile, loginSubmit, checkUser, addUser} = useContext(UserProfileContext);
         const [isLoading, setIsLoading] = useState(false);
 
         
@@ -37,8 +37,7 @@ const Register = () => {
                             username: userAccount.Name
                         }
                         addUser(newUserAccount).then(() => {
-
-                     window.location.href = "/login"
+                            getUserProfile(newUserAccount.username)
                 });
                     }
                     else {
